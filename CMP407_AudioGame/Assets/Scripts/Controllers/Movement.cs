@@ -23,14 +23,14 @@ public class Movement : MonoBehaviour
     float jumpHeight;
     float lateralMovement;
     float stepLength = 0.0f;
-    float runStepLengthMultiplier = 1.2f;
-    float depthInWater;
+    float runStepLengthMultiplier = 0.6f;
 
     bool wasAirborneLastFrame = false;
     bool isNearDungeon = false;
     bool isNearMountains = false;
     bool isOnWater = false;
     bool isShallow = true;
+    bool isInDungeon = false;
 
     string lastWalkAudio = "";
 
@@ -38,8 +38,6 @@ public class Movement : MonoBehaviour
     Vector3 moveDirection;
 
     MOVE_STATE moveState;
-
-    int steps;
 
     // Start is called before the first frame update
     void Start()
@@ -53,8 +51,6 @@ public class Movement : MonoBehaviour
         jumpHeight = 2.1f;
         jumpVelocity = 0f;
         moveState = MOVE_STATE.WALKING;
-        stepLength %= 0.39f;
-        steps = 0;
     }
 
     // Update is called once per frame
@@ -84,13 +80,14 @@ public class Movement : MonoBehaviour
         {
             moveDirection *= runMultiplier;
             moveState = MOVE_STATE.RUNNUNG;
+            stepLength += moveDirection.magnitude * Time.deltaTime * runStepLengthMultiplier;
         }  
         else
         {
             if (cc.isGrounded)
                 moveState = MOVE_STATE.WALKING;
+            stepLength += moveDirection.magnitude * Time.deltaTime;
         }
-        stepLength += moveDirection.magnitude * Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.Space) && cc.isGrounded)
         {
@@ -112,6 +109,18 @@ public class Movement : MonoBehaviour
         {
             wasAirborneLastFrame = false;
             Debug.Log("landed");
+
+            int q = Random.Range(1, 3);
+            if (isInDungeon)
+            {
+                audioController.UpdateVolume(("Jump" + q), 0.5f);
+                audioController.Play("Jump" + q);
+            }
+            else
+            {
+                audioController.UpdateVolume(("Jump" + q), 0.32f);
+                audioController.Play("Jump" + q);
+            }
             //Play landing Audio--------------------------------------------------------------------------------
         }
 
@@ -150,14 +159,20 @@ public class Movement : MonoBehaviour
                     lastWalkAudio = "DeepWater" + q;
                 }
             }
+            else if (isInDungeon)
+            {
+                int q = Random.Range(1, 3);
+                audioController.Play("Dungeon" + q);
+                lastWalkAudio = "Dungeon" + q;
+            }
             //play walk audio
             stepLength = 0f;
         }
 
-        //if ((moveState != MOVE_STATE.JUMPING && moveDirection.x == 0 && moveDirection.z == 0) || !cc.isGrounded)
+        if ((moveState != MOVE_STATE.JUMPING && moveDirection.x == 0 && moveDirection.z == 0) || !cc.isGrounded)
         {
-            //audioController.Stop(lastWalkAudio);
-            //Debug.Log(lastWalkAudio);
+            audioController.Stop(lastWalkAudio);
+            Debug.Log(lastWalkAudio);
         }
 
         if(isNearDungeon)
@@ -206,5 +221,10 @@ public class Movement : MonoBehaviour
         }
         //Debug.Log("Water: " + (gameObject.transform.position.y - 3.92f));
         Debug.Log("Depth: " + depth);
+    }
+
+    public void setInDungeon(bool dungeon)
+    {
+        isInDungeon = dungeon;
     }
 }

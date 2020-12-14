@@ -1448,6 +1448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 864110539}
   - component: {fileID: 864110540}
+  - component: {fileID: 864110541}
   m_Layer: 0
   m_Name: Enter Dungeon
   m_TagString: Untagged
@@ -1482,6 +1483,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 20, y: 5, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &864110541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864110538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c95e505ad547224880519af88fa4525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &879231722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1734,6 +1747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1006077360}
   - component: {fileID: 1006077361}
+  - component: {fileID: 1006077362}
   m_Layer: 0
   m_Name: Enter Dungeon
   m_TagString: Untagged
@@ -1768,6 +1782,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 20, y: 5, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1006077362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006077359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c95e505ad547224880519af88fa4525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1219834098
 GameObject:
   m_ObjectHideFlags: 0
@@ -2801,7 +2827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a949baf14cccac749ab3970fc6b34cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioMixer: {fileID: 0}
+  _audioMixer: {fileID: 24300002, guid: 6bf4e554a68931848bf974888d90a83f, type: 2}
   audioClip:
   - name: Walk1
     clip: {fileID: 8300000, guid: e7bd24a9025048f4387d708d7c740641, type: 3}
@@ -2840,32 +2866,32 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Run1
     clip: {fileID: 8300000, guid: 5e82ea874a9238d4f8ef90a2d5b5d614, type: 3}
-    volume: 0.525
+    volume: 0.29
     loop: 0
     source: {fileID: 0}
   - name: Run2
     clip: {fileID: 8300000, guid: 6716a38e25204fb42b10405fdf3723c7, type: 3}
-    volume: 0.556
+    volume: 0.303
     loop: 0
     source: {fileID: 0}
   - name: Run3
     clip: {fileID: 8300000, guid: dd24cb8b15fffaa4ab706915bc456596, type: 3}
-    volume: 0.507
+    volume: 0.298
     loop: 0
     source: {fileID: 0}
   - name: Run4
     clip: {fileID: 8300000, guid: 18b4c1c3e2ef8d3498e39b29cbc29097, type: 3}
-    volume: 0.534
+    volume: 0.312
     loop: 0
     source: {fileID: 0}
   - name: Run5
     clip: {fileID: 8300000, guid: f39041c52ad2bd34d96576ad728042a2, type: 3}
-    volume: 0.498
+    volume: 0.298
     loop: 0
     source: {fileID: 0}
   - name: Run6
     clip: {fileID: 8300000, guid: 024afdba90a8e1946af8f02203c2dfb7, type: 3}
-    volume: 0.503
+    volume: 0.241
     loop: 0
     source: {fileID: 0}
   - name: WaterWalk1
@@ -2936,6 +2962,36 @@ MonoBehaviour:
   - name: DeepWater4
     clip: {fileID: 8300000, guid: 3579f0037a861e447b965098a14d1782, type: 3}
     volume: 0.507
+    loop: 0
+    source: {fileID: 0}
+  - name: Jump1
+    clip: {fileID: 8300000, guid: 20339d375cbcf1843ba4506e61881c8b, type: 3}
+    volume: 0.312
+    loop: 0
+    source: {fileID: 0}
+  - name: Jump2
+    clip: {fileID: 8300000, guid: f9f9c0b177f47764f96f754d4665b5a8, type: 3}
+    volume: 0.316
+    loop: 0
+    source: {fileID: 0}
+  - name: Jump3
+    clip: {fileID: 8300000, guid: d0a76923e47ec854d926466b5725d006, type: 3}
+    volume: 0.347
+    loop: 0
+    source: {fileID: 0}
+  - name: Dungeon1
+    clip: {fileID: 8300000, guid: 7ca0a997904b3fd4ea8a1e886afa0575, type: 3}
+    volume: 0.423
+    loop: 0
+    source: {fileID: 0}
+  - name: Dungeon2
+    clip: {fileID: 8300000, guid: b8cb3e437768b344f8aff11dbf20996a, type: 3}
+    volume: 0.414
+    loop: 0
+    source: {fileID: 0}
+  - name: Dungeon3
+    clip: {fileID: 8300000, guid: 35573290f9b7d2041a318e9129ff6172, type: 3}
+    volume: 0.463
     loop: 0
     source: {fileID: 0}
 --- !u!1 &2124115784
