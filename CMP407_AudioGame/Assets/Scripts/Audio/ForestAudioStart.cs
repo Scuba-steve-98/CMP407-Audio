@@ -6,6 +6,8 @@ public class ForestAudioStart : MonoBehaviour
 {
     [SerializeField]
     GameObject dungeon;
+    [SerializeField]
+    GameObject go;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,6 +18,7 @@ public class ForestAudioStart : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         other.gameObject.GetComponent<MusicController>().setNearForest(false);
+        Debug.Log("Distance: " + Vector3.Distance(other.gameObject.transform.position, go.transform.position));
         dungeon.SetActive(false);
     }
 }

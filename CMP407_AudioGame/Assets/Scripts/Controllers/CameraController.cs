@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
         lookDownLimit = 87.0f;
         //playerBody = FindObjectOfType<Transform>();
         sensitivity = 500f;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame

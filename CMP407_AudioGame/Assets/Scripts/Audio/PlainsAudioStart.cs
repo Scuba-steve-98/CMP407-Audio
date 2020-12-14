@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlainsAudioStart : MonoBehaviour
 {
+    [SerializeField]
+    GameObject go;
     private void OnTriggerEnter(Collider other)
     {
         other.gameObject.GetComponent<MusicController>().setNearPlains(true);
@@ -12,5 +14,6 @@ public class PlainsAudioStart : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         other.gameObject.GetComponent<MusicController>().setNearPlains(false);
+        Debug.Log("Distance: " + Vector3.Distance(other.gameObject.transform.position, go.transform.position));
     }
 }
