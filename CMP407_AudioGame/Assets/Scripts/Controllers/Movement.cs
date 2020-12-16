@@ -14,9 +14,9 @@ public class Movement : MonoBehaviour
         JUMPING
     }
 
-    float jumpStaminaLoss;
-    float runStaminaLoss;
-    float stamina;
+    //float jumpStaminaLoss;
+    //float runStaminaLoss;
+    //float stamina;
     float jumpVelocity;
     float walkMax;
     float runMultiplier;
@@ -27,7 +27,6 @@ public class Movement : MonoBehaviour
 
     bool wasAirborneLastFrame = false;
     bool isNearDungeon = false;
-    bool isNearMountains = false;
     bool isOnWater = false;
     bool isShallow = true;
     bool isInDungeon = false;
@@ -44,13 +43,15 @@ public class Movement : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         audioController = FindObjectOfType<AudioController>();
-        walkMax = 7f;// 0.03f;
+        walkMax = 7f;
         lateralMovement = 5.5f;
         runMultiplier = 2f;
         moveDirection = new Vector3(0.0f, 0.0f, 0.0f);
         jumpHeight = 2.1f;
         jumpVelocity = 0f;
         moveState = MOVE_STATE.WALKING;
+        //MusicController m = FindObjectOfType<MusicController>();
+        //m.Play("Default");
     }
 
     // Update is called once per frame
@@ -60,13 +61,13 @@ public class Movement : MonoBehaviour
         moveDirection += gameObject.transform.forward * walkMax * Input.GetAxis("Vertical");
         moveDirection += gameObject.transform.right * lateralMovement * Input.GetAxis("Horizontal");
 
-        if (stepLength == 0 && isOnWater && ((moveDirection.x > 0 && moveDirection.z > 0) || (moveDirection.x > 0 || moveDirection.z > 0)) && isShallow)
+        if (stepLength < 0.1f && isOnWater && ((moveDirection.x > 0 && moveDirection.z > 0) || (moveDirection.x > 0 || moveDirection.z > 0)) && isShallow)
         {
             int q = Random.Range(1, 5);
-            audioController.Play("WaterExit" + q);
+            audioController.PlayOneShot("WaterExit" + q, Random.Range(0.4f, 0.6f));
         }
 
-        //Debug.Log(moveDirection.x + " " + moveDirection.z + " " + stepLength);
+
         if (moveDirection.x == 0 && moveDirection.z == 0)
         {
             stepLength = 0;
@@ -108,20 +109,17 @@ public class Movement : MonoBehaviour
         else if (cc.isGrounded && wasAirborneLastFrame)
         {
             wasAirborneLastFrame = false;
-            Debug.Log("landed");
+            //Debug.Log("landed");
 
             int q = Random.Range(1, 3);
             if (isInDungeon)
             {
-                audioController.UpdateVolume(("Jump" + q), 0.5f);
-                audioController.Play("Jump" + q);
+                audioController.PlayOneShot("Jump" + q, Random.Range(0.7f, 0.8f));
             }
             else
             {
-                audioController.UpdateVolume(("Jump" + q), 0.32f);
-                audioController.Play("Jump" + q);
+                audioController.PlayOneShot("Jump" + q, Random.Range(0.45f, 0.55f));
             }
-            //Play landing Audio--------------------------------------------------------------------------------
         }
 
         moveDirection.y = jumpVelocity;
@@ -135,44 +133,42 @@ public class Movement : MonoBehaviour
             if (moveState == MOVE_STATE.WALKING && !isOnWater)
             {
                 int q = Random.Range(1, 7);
-                audioController.Play("Walk" + q);
                 lastWalkAudio = "Walk" + q;
+                audioController.PlayOneShot(lastWalkAudio, Random.Range(0.5f, 0.6f));
             }
             else if (moveState == MOVE_STATE.RUNNUNG && !isOnWater)
             {
                 int q = Random.Range(1, 6);
-                audioController.Play("Run" + q);
                 lastWalkAudio = "Run" + q;
+                audioController.PlayOneShot(lastWalkAudio, Random.Range(0.5f, 0.65f));
             }
             else if (isOnWater)
             {
                 if (isShallow)
                 {
                     int q = Random.Range(1, 5);
-                    audioController.Play("WaterWalk" + q);
                     lastWalkAudio = "WaterWalk" + q;
+                    audioController.PlayOneShot(lastWalkAudio, Random.Range(0.4f, 0.5f));
                 }
                 else if (!isShallow)
                 {
                     int q = Random.Range(1, 4);
-                    audioController.Play("DeepWater" + q);
                     lastWalkAudio = "DeepWater" + q;
+                    audioController.PlayOneShot(lastWalkAudio, Random.Range(0.4f, 0.5f));
                 }
             }
             else if (isInDungeon)
             {
                 int q = Random.Range(1, 3);
-                audioController.Play("Dungeon" + q);
                 lastWalkAudio = "Dungeon" + q;
+                audioController.PlayOneShot(lastWalkAudio, Random.Range(0.4f, 0.5f));
             }
-            //play walk audio
             stepLength = 0f;
         }
 
         if ((moveState != MOVE_STATE.JUMPING && moveDirection.x == 0 && moveDirection.z == 0) || !cc.isGrounded)
         {
             audioController.Stop(lastWalkAudio);
-            Debug.Log(lastWalkAudio);
         }
 
         if(isNearDungeon)
@@ -193,7 +189,6 @@ public class Movement : MonoBehaviour
     public void setInWater(bool water)
     {
         isOnWater = water;
-        //Debug.Log("water" + isOnWater);
     }
 
     public void setWaterStart(Vector3 pos)
@@ -206,12 +201,10 @@ public class Movement : MonoBehaviour
         float depth = gameObject.transform.position.y - water;
         if (depth < 0.10f)
         {
-            Debug.Log("Large");
             isShallow = false;
         }
         else if (depth > 0.10f)
         {
-            Debug.Log("Small");
             isShallow = true;
         }
 
@@ -219,8 +212,6 @@ public class Movement : MonoBehaviour
         {
             gameObject.transform.position = spawnPos;
         }
-        //Debug.Log("Water: " + (gameObject.transform.position.y - 3.92f));
-        Debug.Log("Depth: " + depth);
     }
 
     public void setInDungeon(bool dungeon)

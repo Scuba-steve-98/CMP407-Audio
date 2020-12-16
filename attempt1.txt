@@ -1,0 +1,129 @@
+    bool isNearDungeon = false;
+    bool isNearMountains = false;
+    bool isNearForest = false;
+    bool isNearVillage = false;
+    bool isNearPlains = false;
+    //bool isOnWater = false;
+
+    public AudioMixerGroup _audioMixer;
+
+    public AudioClip defaultMusic;
+    public AudioClip village;
+    public AudioClip mountians;
+    public AudioClip plains;
+    public AudioClip forest;
+    public AudioClip nightime;
+    public AudioClip dungeon;
+
+    AudioSource source;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        source = gameObject.AddComponent<AudioSource>();
+        source.clip = defaultMusic;
+        source.loop = true;
+        source.volume = 0.5f;
+        source.outputAudioMixerGroup = _audioMixer;
+        source.Play();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isNearForest)
+        {
+            // Dungeon Music
+            //if 
+        }
+        else if (isNearMountains)
+        {
+
+        }
+        else if (isNearPlains)
+        {
+
+        }
+        else if (isNearDungeon)
+        {
+
+        }
+        else if (isNearVillage)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+
+    public void updateMusicVolume(float lerpValue)
+    {
+        if (lerpValue > 0)
+        source.volume = lerpValue / 1.3333f;
+        Debug.Log(source.volume + "Volume");
+    }
+
+    public void setMusic(int name)
+    {
+        source.Stop();
+        Debug.Log("Value: " + name);
+
+        if (name == 0)
+        {
+            source.clip = defaultMusic;
+        }
+        else if (name == 1)
+        {
+            source.clip = village;
+        }
+        else if (name == 2)
+        {
+            source.clip = mountians;
+        }
+        else if (name == 3)
+        {
+            source.clip = plains;
+        }
+        else if (name == 4)
+        {
+            source.clip = forest;
+        }
+        else if (name == 5)
+        {
+            source.clip = nightime;
+        }
+        else if (name == 6)
+        {
+            source.clip = dungeon;
+        }
+        source.Play();
+        Time.timeScale = 0;
+    }
+
+
+    public void setNearForest(bool near)
+    {
+        isNearForest = near;
+        Debug.Log("Forest" + near);
+    }
+
+    public void setNearMountains(bool near)
+    {
+        isNearMountains = near;
+        Debug.Log("Mountains" + near);
+    }
+
+    public void setNearPlains(bool near)
+    {
+        isNearPlains = near;
+        Debug.Log("Plains" + near);
+    } 
+    
+    public void setNearVillage(bool near)
+    {
+        isNearVillage = near;
+        Debug.Log("Village" + near);
+    }

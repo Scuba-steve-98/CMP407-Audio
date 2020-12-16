@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    int audioPlayed = 0;
-    bool isOnWater;
     // Start is called before the first frame update
     public AudioMixerGroup _audioMixer;
 
@@ -37,13 +35,12 @@ public class AudioController : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found, please check spelling :P");
             return;
         }
-        audioPlayed++;
-        //Debug.Log("Audio " + name + " played " + audioPlayed);
+
         sounds.source.Play();
     }
 
 
-    public void PlayAtPoint(string name, float volume)
+    public void PlayOneShot(string name, float volume)
     {
         Sound sounds = Array.Find(audioClip, sound => sound.name == name);
         if (sounds == null)
@@ -51,8 +48,8 @@ public class AudioController : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found, please check spelling :P");
             return;
         }
-        sounds.source.volume = sounds.volume * volume;
-        sounds.source.Play();
+        //sounds.source.Play();
+        sounds.source.PlayOneShot(sounds.source.clip, volume);
         //Debug.Log("Source Volume: " + sounds.source.volume);
     }
 
@@ -89,30 +86,5 @@ public class AudioController : MonoBehaviour
             return;
         }
         sounds.source.volume = sounds.volume * volume;
-    }
-
-
-    public void Pause(string name)
-    {
-        Sound sounds = Array.Find(audioClip, sound => sound.name == name);
-        if (sounds == null)
-        {
-            Debug.LogWarning("Sound: " + name + " not found, please check spelling :P");
-            return;
-        }
-        sounds.source.Pause();
-    }
-
-    public void setInWater(bool water)
-    {
-        isOnWater = water;
-        Debug.Log("water" + isOnWater);
-    }
-
-    public void updateDepthInWater(float water)
-    {
-        float depth = gameObject.transform.position.y - water;
-        Debug.Log("Water: " + (gameObject.transform.position.y - 3.92f));
-        Debug.Log("Depth: " + depth);
     }
 }

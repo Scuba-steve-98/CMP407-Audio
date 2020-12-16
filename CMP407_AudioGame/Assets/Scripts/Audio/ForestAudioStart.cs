@@ -11,13 +11,13 @@ public class ForestAudioStart : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<MusicController>().setNearForest(true);
+        //other.gameObject.GetComponent<MusicController>().setNearForest(true);
         dungeon.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        other.gameObject.GetComponent<MusicController>().setNearForest(false);
+        //other.gameObject.GetComponent<MusicController>().setNearForest(false);
         Debug.Log("Distance: " + Vector3.Distance(other.gameObject.transform.position, go.transform.position));
         dungeon.SetActive(false);
     }

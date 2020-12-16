@@ -7,12 +7,12 @@ public class InDungeon : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         other.gameObject.GetComponent<Movement>().setInDungeon(true);
-        Debug.Log("In Dungeon");
+        //Debug.Log("In Dungeon");
     }
 
     private void OnTriggerExit(Collider other)
     {
         other.gameObject.GetComponent<Movement>().setInDungeon(false);
-        Debug.Log("Left Dungeon");
+        //Debug.Log("Left Dungeon");
     }
 }

@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class DayNightCycle : MonoBehaviour
 {
-    float dayLength = 1200f;
     float timer;
-    float lerpTimer;
     float offset = 90f;
     Vector3 rotateValue;
 
-    bool done = true;
-    bool lastFrameSameNight = false;
     bool isNight = false;
 
     [SerializeField]
@@ -25,7 +21,7 @@ public class DayNightCycle : MonoBehaviour
     float timeOfDay;
 
     [SerializeField]
-    float timeMultiplier;
+    float timeMultiplier = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -98,49 +94,5 @@ public class DayNightCycle : MonoBehaviour
             rotateValue.x = (timer * 360) - offset;
             Sun.transform.localRotation = Quaternion.Euler(rotateValue);
         }
-
-
-        //timer += Time.deltaTime;
-        //lerpTimer = timer / dayLength;
-        //if (lerpTimer >= 1)
-        //    timer = 0;
-
-        //rotateValue.x = Mathf.Lerp(0, 360, lerpTimer);
-
-        //if (isNight && rotateValue.x < 180)
-        //{
-        //    //set day
-        //    Debug.Log("DayMan Ahahaaaa");
-        //    isNight = false;
-        //}
-
-        //if (!isNight && rotateValue.x > 180)
-        //{
-        //    //set night
-        //    Debug.Log("NightMan Ahahaaaa");
-        //    isNight = true;
-        //}
-
-        //if (rotateValue.x > 180)
-        //{
-        //    Sun.SetActive(false);
-        //    Moon.SetActive(true);
-
-        //    if (!done)
-        //    {
-        //        // set Night music
-        //    }
-        //}
-        //else if (rotateValue.x < 180)
-        //{
-        //    Sun.SetActive(true);
-        //    Moon.SetActive(false);
-
-        //    if (!done)
-        //    {
-        //        // set Day music
-        //    }
-        //}
-        //gameObject.transform.eulerAngles = rotateValue;
     }
 }

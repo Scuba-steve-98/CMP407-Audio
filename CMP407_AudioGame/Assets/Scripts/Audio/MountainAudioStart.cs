@@ -11,14 +11,14 @@ public class MountainAudioStart : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<MusicController>().setNearMountains(true);
+        //other.gameObject.GetComponent<MusicController>().setNearMountains(true);
         dungeon.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        other.gameObject.GetComponent<MusicController>().setNearMountains(false);
-        Debug.Log("Distance: " + Vector3.Distance(other.gameObject.transform.position, go.transform.position));
+        //other.gameObject.GetComponent<MusicController>().setNearMountains(false);
+        //Debug.Log("Distance: " + Vector3.Distance(other.gameObject.transform.position, go.transform.position));
         dungeon.SetActive(false);
     }
 }

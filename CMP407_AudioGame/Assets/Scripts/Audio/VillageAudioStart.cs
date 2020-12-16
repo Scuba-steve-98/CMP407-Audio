@@ -14,7 +14,7 @@ public class VillageAudioStart : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<MusicController>().setNearVillage(true);
+            //other.gameObject.GetComponent<MusicController>().setNearVillage(true);
             if (book)
             {
                 book.SetActive(true);
@@ -25,7 +25,7 @@ public class VillageAudioStart : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        other.gameObject.GetComponent<MusicController>().setNearVillage(false);
+        //other.gameObject.GetComponent<MusicController>().setNearVillage(false);
         Debug.Log("Distance: " + Vector3.Distance(other.gameObject.transform.position, go.transform.position));
         if (book)
         {

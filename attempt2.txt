@@ -1,0 +1,161 @@
+    bool isNearDungeon = false;
+    bool isNearMountains = false;
+    bool isNearForest = false;
+    bool isNearVillage = false;
+    bool isNearPlains = false;
+
+    // Start is called before the first frame update
+    public AudioMixerGroup _audioMixer;
+
+    public Sound[] audioClip;
+
+    //public static AudioManager instance;
+
+    void Awake()
+    {
+        foreach (Sound sounds in audioClip)
+        {
+
+            sounds.source = gameObject.AddComponent<AudioSource>();
+            sounds.source.clip = sounds.clip;
+            sounds.source.outputAudioMixerGroup = _audioMixer;
+
+            sounds.source.volume = sounds.volume;
+            sounds.source.loop = sounds.loop;
+        }
+    }
+
+    public void Play(string name)
+    {
+        Sound sounds = Array.Find(audioClip, sound => sound.name == name);
+        if (sounds == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found, please check spelling :P");
+            return;
+        }
+
+        sounds.source.Play();
+    }
+
+
+    public void PlayOneShot(string name, float volume)
+    {
+        Sound sounds = Array.Find(audioClip, sound => sound.name == name);
+        if (sounds == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found, please check spelling :P");
+            return;
+        }
+        //sounds.source.Play();
+        sounds.source.PlayOneShot(sounds.source.clip, volume);
+        //Debug.Log("Source Volume: " + sounds.source.volume);
+    }
+
+
+    public void Stop(string name)
+    {
+        Sound sounds = Array.Find(audioClip, sound => sound.name == name);
+        if (sounds == null)
+        {
+            return;
+        }
+        if (sounds.source.isPlaying)
+            sounds.source.Stop();
+    }
+
+
+    public bool IsPlaying(string name)
+    {
+        Sound sounds = Array.Find(audioClip, sound => sound.name == name);
+        if (sounds == null)
+        {
+            return true;
+        }
+        return sounds.source.isPlaying;
+    }
+
+
+    public void updateMusicVolume(string name, float volume)
+    {
+        Sound sounds = Array.Find(audioClip, sound => sound.name == name);
+        if (sounds == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found, please check spelling :P");
+            return;
+        }
+        sounds.source.volume = sounds.volume * volume;
+    }
+
+    //public AudioMixerGroup _audioMixer;
+    //public Sound[] musicClips;
+
+    //private void Awake()
+    //{
+    //    foreach (Sound music in musicClips)
+    //    {
+    //        music.source = gameObject.AddComponent<AudioSource>();
+    //        music.source.clip = music.clip;
+    //        music.source.outputAudioMixerGroup = _audioMixer;
+
+    //        music.source.volume = music.volume;
+    //        music.source.loop = music.loop;
+    //    }
+    //}
+
+    //public void Play(string name)
+    //{
+    //    Sound music = Array.Find(musicClips, sound => sound.name == name);
+    //    if (music == null)
+    //    {
+    //        Debug.LogWarning("Baka. Music: " + name + " doesn't exist, check spelling");
+    //        return;
+    //    }
+    //    music.source.Play();
+    //}    
+
+    //public void Stop(string name)
+    //{
+    //    Sound music = Array.Find(musicClips, sound => sound.name == name);
+    //    if (music == null)
+    //    {
+    //        Debug.LogWarning("Baka. Music: " + name + " doesn't exist, check spelling");
+    //        return;
+    //    }
+    //    music.source.Stop();
+    //}
+
+    //public void updateMusicVolume(string name, float volume)
+    //{
+    //    Sound music = Array.Find(musicClips, sound => sound.name == name);
+    //    if (music == null)
+    //    {
+    //        Debug.LogWarning("Baka. Music: " + name + " doesn't exist, check spelling");
+    //        return;
+    //    }
+    //    music.source.volume = volume / 1.33333f;
+    //}
+
+
+    public void setNearForest(bool near)
+    {
+        isNearForest = near;
+        Debug.Log("Forest" + near);
+    }
+
+    public void setNearMountains(bool near)
+    {
+        isNearMountains = near;
+        Debug.Log("Mountains" + near);
+    }
+
+    public void setNearPlains(bool near)
+    {
+        isNearPlains = near;
+        Debug.Log("Plains" + near);
+    }
+
+    public void setNearVillage(bool near)
+    {
+        isNearVillage = near;
+        Debug.Log("Village" + near);
+    }
