@@ -22,11 +22,14 @@ public class DayNightCycle : MonoBehaviour
 
     [SerializeField]
     float timeMultiplier = 0;
+
+    MusicController music;
     // Start is called before the first frame update
     void Start()
     {
         timer = 396f;
         rotateValue = new Vector3(0f, 203f, 0f);
+        music = FindObjectOfType<MusicController>();
     }
 
     // Update is called once per frame
@@ -38,7 +41,8 @@ public class DayNightCycle : MonoBehaviour
         if(Application.isPlaying)
         {
             timeOfDay += Time.deltaTime / timeMultiplier;
-            timeOfDay %= 24;
+            if (timeOfDay > 24)
+                timeOfDay = 0;
             timer = timeOfDay / 24f;
 
             if (timeOfDay > 8.50f && timeOfDay < 9.10f)
@@ -46,20 +50,24 @@ public class DayNightCycle : MonoBehaviour
                 if (timeOfDay < 8.8f)
                 {
                     // lerp audio
+                    float lerpVal = -(timeOfDay - 8.8f) * 3.333333332f;
+                    music.updateMusicVolume(lerpVal);
                     Debug.Log("Transition from Night" + (-(timeOfDay - 8.8f) * 3.333333332f));
                 }
 
                 if (timeOfDay > 8.8f && timeOfDay < 19.0f && isNight)
                 {
                     isNight = false;
+                    music.setToDay(true);
                     Debug.Log("Now it's Day");
                 }
 
                 if (timeOfDay > 8.8f)
                 {
+                    float lerpVal = (timeOfDay - 8.8f) * 3.333333332f;
+                    music.updateMusicVolume(lerpVal);
                     Debug.Log("Transition to Day" +  ((timeOfDay - 8.8f) * 3.333333332f));
                 }
-                //Debug.Log(/*"Transition to Day" + ((timeOfDay - 8.8f) * 3.333333332f));
             }
 
             if (timeOfDay > 19.70f && timeOfDay < 20.30f)
@@ -67,27 +75,26 @@ public class DayNightCycle : MonoBehaviour
                 if (timeOfDay < 20.0f)
                 {
                     // lerp audio
+                    float lerpVal = -(timeOfDay - 20.0f) * 3.333333332f;
+                    music.updateMusicVolume(lerpVal);
                     Debug.Log("Transition from Day" + (-(timeOfDay - 20.0f) * 3.333333332f));
                 }
 
                 if ((timeOfDay > 8.8f || timeOfDay < 20.0f) && !isNight)
                 {
                     isNight = true;
+                    music.setToDay(false);
+                    music.setNight();
                     Debug.Log("Now it's Night");
                 }
 
                 if (timeOfDay > 20.0f)
                 {
+                    float lerpVal = (timeOfDay - 20.0f) * 3.333333332f;
+                    music.updateMusicVolume(lerpVal);
                     Debug.Log("Transition to Night" + ((timeOfDay - 20.0f) * 3.333333332f));
                 }
-                //Debug.Log("Transition to Night" + ((timeOfDay - 20.3f) * 3.333333332f));
             }
-
-            //if ((timeOfDay < 8.8f || timeOfDay > 20.3f) && !isNight)
-            //{
-            //    isNight = true;
-            //    Debug.Log("Now it's Night");
-            //}
             RenderSettings.ambientLight = preset.AmbientColour.Evaluate(timer);
 
             Sun.color = preset.DirectionalColour.Evaluate(timer);

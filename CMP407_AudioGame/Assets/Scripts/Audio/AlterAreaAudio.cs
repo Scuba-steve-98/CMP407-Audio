@@ -13,7 +13,7 @@ public class AlterAreaAudio : MonoBehaviour
     Vector3 colliderPos;
 
     [SerializeField]
-    string biomeName;
+    bool isMountains;
 
     private void Start()
     {
@@ -26,8 +26,7 @@ public class AlterAreaAudio : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         lerpDistance = Vector3.Distance(other.gameObject.transform.position, colliderPos);
-        lerpDistance = (lerpDistance - 20f) / 10f;
-        //Debug.Log("Lerp: " + lerpDistance);
+        lerpDistance = (lerpDistance - 25f) / 25f;
 
         if (lerpDistance > 0.5f)
         {
@@ -38,27 +37,28 @@ public class AlterAreaAudio : MonoBehaviour
         {
             if (!musicTrigger)
             {
-                Debug.Log("Yeet");
-                music.stopMountains();
                 music.setDungeon();
-                //music.Stop(biomeName);
-                //music.Play("Dungeon");
                 musicTrigger = true; 
             }
             nearDungeon = true;
-            //music.updateMusicVolume(/*"Dungeon", */1 - lerpDistance);
+            music.updateMusicVolume(1 - lerpDistance);
         }
         else if (lerpDistance > 0.5f && !nearDungeon)
         {
             if (musicTrigger)
             {
-                music.setDefault();
-                //music.Stop("Dungeon");
-                //music.Play(biomeName);
+                if (isMountains)
+                {
+                    music.setMountains();
+                }
+                else if (!isMountains)
+                {
+                    music.setForest();
+                }
                 musicTrigger = false;
             }
 
-            //music.updateMusicVolume(/*biomeName,*/ lerpDistance);
+            music.updateMusicVolume(lerpDistance);
         }
     }
 }

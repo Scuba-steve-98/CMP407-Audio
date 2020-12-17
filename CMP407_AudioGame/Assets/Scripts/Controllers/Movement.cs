@@ -153,7 +153,7 @@ public class Movement : MonoBehaviour
                 else if (!isShallow)
                 {
                     int q = Random.Range(1, 4);
-                    lastWalkAudio = "DeepWater" + q;
+                    lastWalkAudio = "DeepWalk" + q;
                     audioController.PlayOneShot(lastWalkAudio, Random.Range(0.4f, 0.5f));
                 }
             }

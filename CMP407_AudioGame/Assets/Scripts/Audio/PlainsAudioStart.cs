@@ -6,14 +6,48 @@ public class PlainsAudioStart : MonoBehaviour
 {
     [SerializeField]
     GameObject go;
-    private void OnTriggerEnter(Collider other)
+
+    MusicController music;
+
+    float lerpDistance;
+
+    bool inVillage = false;
+    bool musicTrigger = false;
+
+    private void Start()
     {
-        //other.gameObject.GetComponent<MusicController>().setNearPlains(true);
+        music = FindObjectOfType<MusicController>();
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        //other.gameObject.GetComponent<MusicController>().setNearPlains(false);
-        Debug.Log("Distance: " + Vector3.Distance(other.gameObject.transform.position, go.transform.position));
+        lerpDistance = Vector3.Distance(go.transform.position, other.transform.position);
+        lerpDistance = (lerpDistance - 155f) / 35f;
+
+        if (lerpDistance > 0.5f)
+        {
+            inVillage = false;
+        }
+
+        if (lerpDistance < 0.5f && lerpDistance > 0f)
+        {
+            if (!musicTrigger)
+            {
+                music.setPlains();
+                musicTrigger = true;
+            }
+            inVillage = true;
+            music.updateMusicVolume(1 - lerpDistance);
+        }
+        else if (lerpDistance > 0.5f && !inVillage)
+        {
+            if (musicTrigger)
+            {
+                music.setDefault();
+                musicTrigger = false;
+            }
+
+            music.updateMusicVolume(lerpDistance);
+        }
     }
 }

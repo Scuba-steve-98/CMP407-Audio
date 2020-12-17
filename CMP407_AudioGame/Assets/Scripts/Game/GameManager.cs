@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    AudioController audioController;
+    SFXController sfx;
     int numberBooks = 0;
     // Start is called before the first frame update
     void Start()
     {
-        audioController = FindObjectOfType<AudioController>();
+        sfx = FindObjectOfType<SFXController>();
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     {
         numberBooks++;
 
-        audioController.Play("Found" + numberBooks);
+        sfx.PlayBook("Book" + numberBooks);
 
         Debug.Log("Books found: " + numberBooks);
         if (numberBooks == 3)

@@ -6,13 +6,17 @@ using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
-    bool isNearDungeon = false;
-    bool isNearMountains = false;
-    bool isNearForest = false;
-    bool isNearVillage = false;
-    bool isNearPlains = false;
-    //bool isOnWater = false;
-    bool yes = false;
+    enum BIOME
+    {
+        VILLAGE,
+        MOUNTAINS,
+        PLAINS,
+        FOREST,
+        DUNGEON,
+        DEFAULT
+    }
+
+    BIOME currentBiome;
 
     public AudioMixerGroup _audioMixer;
 
@@ -32,6 +36,7 @@ public class MusicController : MonoBehaviour
     AudioSource nightimeSource;
     AudioSource dungeonSource;
 
+    bool isDay = true;
 
     // Start is called before the first frame update
     void Start()
@@ -79,21 +84,9 @@ public class MusicController : MonoBehaviour
         dungeonSource.outputAudioMixerGroup = _audioMixer;
 
         mountiansSource.Play();
+        currentBiome = BIOME.MOUNTAINS;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(mountiansSource.isPlaying);
-        if (Input.GetKeyDown(KeyCode.Space) && !yes)
-        {
-            yes = true;
-            Debug.Log(mountiansSource.isPlaying);
-            stopMountains();
-            //mountiansSource.Stop();
-            Debug.Log("Yeet");
-        }
-    }
 
     public void updateMusicVolume(float lerpValue)
     {
@@ -112,6 +105,10 @@ public class MusicController : MonoBehaviour
 
     public void setDefault()
     {
+        currentBiome = BIOME.DEFAULT;
+        if (!isDay)
+            return;
+
         if (villageSource.isPlaying)
             villageSource.Stop();
 
@@ -128,11 +125,14 @@ public class MusicController : MonoBehaviour
             nightimeSource.Stop();
 
         defaultMusicSource.Play();
-        Debug.Log("EEEEEE");
     }
 
     public void setMountains()
     {
+        currentBiome = BIOME.MOUNTAINS;
+        if (!isDay)
+            return;
+
         if (defaultMusicSource.isPlaying)
             defaultMusicSource.Stop();
 
@@ -143,11 +143,14 @@ public class MusicController : MonoBehaviour
             nightimeSource.Stop();
 
         mountiansSource.Play();
-        Debug.Log("EEEEEE");
     }
 
     public void setVillage()
     {
+        currentBiome = BIOME.VILLAGE;
+        if (!isDay)
+            return;
+
         if (defaultMusicSource.isPlaying)
             defaultMusicSource.Stop();
 
@@ -157,35 +160,30 @@ public class MusicController : MonoBehaviour
         villageSource.Play();
     }
 
-    public void stopMountains()
-    {
-        if (mountiansSource.isPlaying)
-        {
-            Debug.Log(mountiansSource.isPlaying);
-            mountiansSource.Stop();
-            Debug.Log(mountiansSource.isPlaying);
-        }
-        Debug.Log(mountiansSource.isPlaying + "???????");
-    }
-
     public void setDungeon()
     {
-        //if (mountiansSource.isPlaying)
-        //    mountiansSource.Stop();
+        currentBiome = BIOME.DUNGEON;
+        if (!isDay)
+            return;
 
-        //if (forestSource.isPlaying)
-        //    forestSource.Stop();
+        if (mountiansSource.isPlaying)
+            mountiansSource.Stop();
 
-        //if (nightimeSource.isPlaying)
-        //    nightimeSource.Stop();
+        if (forestSource.isPlaying)
+            forestSource.Stop();
+
+        if (nightimeSource.isPlaying)
+            nightimeSource.Stop();
 
         dungeonSource.Play();
-
-        Debug.Log("Nani");
     }
 
     public void setPlains()
     {
+        currentBiome = BIOME.PLAINS;
+        if (!isDay)
+            return;
+
         if (defaultMusicSource.isPlaying)
             defaultMusicSource.Stop();
 
@@ -197,6 +195,10 @@ public class MusicController : MonoBehaviour
 
     public void setForest()
     {
+        currentBiome = BIOME.FOREST;
+        if (!isDay)
+            return;
+
         if (defaultMusicSource.isPlaying)
             defaultMusicSource.Stop();
 
@@ -232,37 +234,37 @@ public class MusicController : MonoBehaviour
         nightimeSource.Play();
     }
 
-    public void setNearForest(bool near)
+    public void setToDay(bool day)
     {
-        isNearForest = near;
-        Debug.Log("Forest" + near);
+        isDay = day;
+        if (isDay)
+        {
+            switch (currentBiome)
+            {
+                case BIOME.VILLAGE:
+                    setVillage();
+                    break;
+
+                case BIOME.MOUNTAINS:
+                    setMountains();
+                    break;
+
+                case BIOME.PLAINS:
+                    setPlains();
+                    break;
+
+                case BIOME.FOREST:
+                    setForest();
+                    break;
+
+                case BIOME.DUNGEON:
+                    setDungeon();
+                    break;
+
+                case BIOME.DEFAULT:
+                    setDefault();
+                    break;
+            }
+        }
     }
-
-    public void setNearMountains(bool near)
-    {
-        isNearMountains = near;
-        Debug.Log("Mountains" + near);
-    }
-
-    public void setNearPlains(bool near)
-    {
-        isNearPlains = near;
-        Debug.Log("Plains" + near);
-    }
-
-    public void setNearVillage(bool near)
-    {
-        isNearVillage = near;
-        Debug.Log("Village" + near);
-    }
-
-
-
-    //defaultMusicSource
-    //villageSource
-    //mountiansSource
-    //plainsSource
-    //forestSource
-    //nightimeSource
-    //dungeonSource
 }
