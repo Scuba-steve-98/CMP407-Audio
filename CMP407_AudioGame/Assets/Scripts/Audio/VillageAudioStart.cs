@@ -16,6 +16,7 @@ public class VillageAudioStart : MonoBehaviour
 
     bool inVillage = false;
     bool musicTrigger = false;
+    bool notTrigger = true;
 
     private void Start()
     {
@@ -36,7 +37,6 @@ public class VillageAudioStart : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Distance: " + Vector3.Distance(other.gameObject.transform.position, go.transform.position));
         if (book)
         {
             book.SetActive(false);
@@ -48,30 +48,33 @@ public class VillageAudioStart : MonoBehaviour
         lerpDistance = Vector3.Distance(go.transform.position, other.transform.position);
         lerpDistance = (lerpDistance - 100f) / 25f;
 
-        if (lerpDistance > 0.5f)
-        {
-            inVillage = false;
-        }
 
-        if (lerpDistance < 0.5f && lerpDistance > 0f)
+        if (lerpDistance > 0 && lerpDistance < 1)
         {
-            if (!musicTrigger)
+            music.updateNonBiomeMusicVolume(lerpDistance);
+            music.updateBiomeMusicVolume(1 - lerpDistance);
+
+            if (lerpDistance < 0.34f)
             {
-                music.setVillage();
-                musicTrigger = true;
+                music.stopDefault();
+                notTrigger = true;
             }
-            inVillage = true;
-            music.updateMusicVolume(1 - lerpDistance);
-        }
-        else if (lerpDistance > 0.5f && !inVillage)
-        {
-            if (musicTrigger)
+            else if (lerpDistance > 0.66f)
+            {
+                notTrigger = false;
+                music.stopVillage();
+            }
+            else if (notTrigger && lerpDistance > 0.34f && lerpDistance < 0.36f)
             {
                 music.setDefault();
-                musicTrigger = false;
+                notTrigger = false;
             }
 
-            music.updateMusicVolume(lerpDistance);
+            else if (!notTrigger && lerpDistance > 0.64f && lerpDistance < 0.66f)
+            {
+                music.setVillage();
+                notTrigger = true;
+            }
         }
     }
 }

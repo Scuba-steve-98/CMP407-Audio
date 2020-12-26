@@ -12,12 +12,6 @@ public class GameManager : MonoBehaviour
         sfx = FindObjectOfType<SFXController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     public void BookFound()
     {

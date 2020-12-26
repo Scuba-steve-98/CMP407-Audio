@@ -22,12 +22,6 @@ public class AnimalAudio : MonoBehaviour
         sfx = FindObjectOfType<SFXController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         timer = 0;

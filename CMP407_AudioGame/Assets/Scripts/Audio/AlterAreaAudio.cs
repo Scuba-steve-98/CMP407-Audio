@@ -8,6 +8,7 @@ public class AlterAreaAudio : MonoBehaviour
 
     bool nearDungeon = false;
     bool musicTrigger = false;
+    bool notTrigger = true;
 
     MusicController music;
     Vector3 colliderPos;
@@ -28,24 +29,24 @@ public class AlterAreaAudio : MonoBehaviour
         lerpDistance = Vector3.Distance(other.gameObject.transform.position, colliderPos);
         lerpDistance = (lerpDistance - 25f) / 25f;
 
-        if (lerpDistance > 0.5f)
-        {
-            nearDungeon = false;
-        }
 
-        if (lerpDistance < 0.5f && lerpDistance > 0f)
+        if (lerpDistance > 0 && lerpDistance < 1)
         {
-            if (!musicTrigger)
+            music.updateNonBiomeMusicVolume(1 - lerpDistance);
+            music.updateBiomeMusicVolume(lerpDistance);
+
+            if (lerpDistance < 0.34f)
             {
-                music.setDungeon();
-                musicTrigger = true; 
+                music.stopForest();
+                music.stopMountains();
+                notTrigger = true;
             }
-            nearDungeon = true;
-            music.updateMusicVolume(1 - lerpDistance);
-        }
-        else if (lerpDistance > 0.5f && !nearDungeon)
-        {
-            if (musicTrigger)
+            else if (lerpDistance > 0.66f)
+            {
+                notTrigger = false;
+                music.stopDungeon();
+            }
+            else if (notTrigger && lerpDistance > 0.34f && lerpDistance < 0.36f)
             {
                 if (isMountains)
                 {
@@ -55,10 +56,14 @@ public class AlterAreaAudio : MonoBehaviour
                 {
                     music.setForest();
                 }
-                musicTrigger = false;
+                notTrigger = false;
             }
 
-            music.updateMusicVolume(lerpDistance);
+            else if (!notTrigger && lerpDistance > 0.64f && lerpDistance < 0.66f)
+            {
+                music.setDungeon();
+                notTrigger = true;
+            }
         }
     }
 }

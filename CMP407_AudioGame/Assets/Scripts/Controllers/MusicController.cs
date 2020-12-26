@@ -87,8 +87,12 @@ public class MusicController : MonoBehaviour
         currentBiome = BIOME.MOUNTAINS;
     }
 
+    private void Update()
+    {
 
-    public void updateMusicVolume(float lerpValue)
+    }
+
+    public void updateAllDayMusicVolume(float lerpValue)
     {
         if (lerpValue > 0)
         {
@@ -97,32 +101,43 @@ public class MusicController : MonoBehaviour
             mountiansSource.volume = lerpValue / 1.3333f;
             plainsSource.volume = lerpValue / 1.3333f;
             forestSource.volume = lerpValue / 1.3333f;
-            nightimeSource.volume = lerpValue / 1.3333f;
             dungeonSource.volume = lerpValue / 1.3333f;
         }
     }
 
+    public void updateNightVolume(float lerpValue)
+    {
+        if (lerpValue > 0)
+        {
+            nightimeSource.volume = lerpValue / 1.33333f;
+        }
+    }
+
+    public void updateBiomeMusicVolume(float lerpValue)
+    {
+        if (lerpValue > 0)
+        {
+            villageSource.volume = lerpValue / 1.3333f;
+            mountiansSource.volume = lerpValue / 1.3333f;
+            plainsSource.volume = lerpValue / 1.3333f;
+            forestSource.volume = lerpValue / 1.3333f;
+        }
+    }
+
+    public void updateNonBiomeMusicVolume(float lerpValue)
+    {
+        if (lerpValue > 0)
+        {
+            defaultMusicSource.volume = lerpValue / 1.3333f;
+            dungeonSource.volume = lerpValue / 1.3333f;
+        }
+    }
 
     public void setDefault()
     {
         currentBiome = BIOME.DEFAULT;
         if (!isDay)
             return;
-
-        if (villageSource.isPlaying)
-            villageSource.Stop();
-
-        if (mountiansSource.isPlaying)
-            mountiansSource.Stop();
-
-        if (plainsSource.isPlaying)
-            plainsSource.Stop();
-
-        if (forestSource.isPlaying)
-            forestSource.Stop();
-
-        if (nightimeSource.isPlaying)
-            nightimeSource.Stop();
 
         defaultMusicSource.Play();
     }
@@ -133,15 +148,6 @@ public class MusicController : MonoBehaviour
         if (!isDay)
             return;
 
-        if (defaultMusicSource.isPlaying)
-            defaultMusicSource.Stop();
-
-        if (dungeonSource.isPlaying)
-            dungeonSource.Stop();
-
-        if (nightimeSource.isPlaying)
-            nightimeSource.Stop();
-
         mountiansSource.Play();
     }
 
@@ -150,12 +156,6 @@ public class MusicController : MonoBehaviour
         currentBiome = BIOME.VILLAGE;
         if (!isDay)
             return;
-
-        if (defaultMusicSource.isPlaying)
-            defaultMusicSource.Stop();
-
-        if (nightimeSource.isPlaying)
-            nightimeSource.Stop();
 
         villageSource.Play();
     }
@@ -166,15 +166,6 @@ public class MusicController : MonoBehaviour
         if (!isDay)
             return;
 
-        if (mountiansSource.isPlaying)
-            mountiansSource.Stop();
-
-        if (forestSource.isPlaying)
-            forestSource.Stop();
-
-        if (nightimeSource.isPlaying)
-            nightimeSource.Stop();
-
         dungeonSource.Play();
     }
 
@@ -183,12 +174,6 @@ public class MusicController : MonoBehaviour
         currentBiome = BIOME.PLAINS;
         if (!isDay)
             return;
-
-        if (defaultMusicSource.isPlaying)
-            defaultMusicSource.Stop();
-
-        if (nightimeSource.isPlaying)
-            nightimeSource.Stop();
 
         plainsSource.Play();
     }
@@ -199,38 +184,11 @@ public class MusicController : MonoBehaviour
         if (!isDay)
             return;
 
-        if (defaultMusicSource.isPlaying)
-            defaultMusicSource.Stop();
-
-        if (dungeonSource.isPlaying)
-            dungeonSource.Stop();
-
-        if (nightimeSource.isPlaying)
-            nightimeSource.Stop();
-
         forestSource.Play();
     }
 
     public void setNight()
     {
-        if (villageSource.isPlaying)
-            villageSource.Stop();
-
-        if (mountiansSource.isPlaying)
-            mountiansSource.Stop();
-
-        if (plainsSource.isPlaying)
-            plainsSource.Stop();
-
-        if (forestSource.isPlaying)
-            forestSource.Stop();
-
-        if (defaultMusicSource.isPlaying)
-            defaultMusicSource.Stop();
-
-        if (dungeonSource.isPlaying)
-            dungeonSource.Stop();
-
         nightimeSource.Play();
     }
 
@@ -265,6 +223,92 @@ public class MusicController : MonoBehaviour
                     setDefault();
                     break;
             }
+        }
+    }
+
+    public void stopVillage()
+    {
+        if (villageSource.isPlaying)
+        {
+            villageSource.Stop();
+        }
+    }
+
+    public void stopPlains()
+    {
+        if (plainsSource.isPlaying)
+        {
+            plainsSource.Stop();
+        }
+    }
+
+    public void stopForest()
+    {
+        if (plainsSource.isPlaying)
+        {
+            plainsSource.Stop();
+        }
+    }
+
+    public void stopMountains()
+    {
+        if (mountiansSource.isPlaying)
+        {
+            mountiansSource.Stop();
+        }
+    }
+
+    public void stopDefault()
+    {
+        if (defaultMusicSource.isPlaying)
+        {
+            defaultMusicSource.Stop();
+        }
+    }
+
+    public void stopDungeon()
+    {
+        if (dungeonSource.isPlaying)
+        {
+            dungeonSource.Stop();
+        }
+    }
+
+    public void stopNight()
+    {
+        if (nightimeSource.isPlaying)
+        {
+            nightimeSource.Stop();
+        }
+    }
+
+    public void stopCurrent()
+    {
+        switch (currentBiome)
+        {
+            case BIOME.VILLAGE:
+                stopVillage();
+                break;
+
+            case BIOME.MOUNTAINS:
+                stopMountains();
+                break;
+
+            case BIOME.PLAINS:
+                stopPlains();
+                break;
+
+            case BIOME.FOREST:
+                stopForest();
+                break;
+
+            case BIOME.DUNGEON:
+                stopDungeon();
+                break;
+
+            case BIOME.DEFAULT:
+                stopDefault();
+                break;
         }
     }
 }

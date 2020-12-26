@@ -17,6 +17,7 @@ public class MountainAudioStart : MonoBehaviour
 
     bool isInBiome = false;
     bool audioTrigger = false;
+    bool notTrigger = true;
 
     private void Start()
     {
@@ -33,6 +34,8 @@ public class MountainAudioStart : MonoBehaviour
         dungeon.SetActive(false);
     }
 
+
+
     private void OnTriggerStay(Collider other)
     {
         lerpDistance = Vector3.Distance(go.transform.position, other.transform.position);
@@ -43,17 +46,35 @@ public class MountainAudioStart : MonoBehaviour
         }
         else if (!isMountain)
         {
-            lerpDistance = (lerpDistance - 110f) / 30f;
+            lerpDistance = (lerpDistance - 100f) / 30f;
         }
+        // ------------------------------------------------------------------------------------------------------------
 
-        if (lerpDistance > 0.5f)
-        {
-            isInBiome = false;
-        }
 
-        if (lerpDistance < 0.5f && lerpDistance > 0f)
+
+        if (lerpDistance > 0 && lerpDistance < 1)
         {
-            if (!audioTrigger)
+            music.updateNonBiomeMusicVolume(lerpDistance);
+            music.updateBiomeMusicVolume(1 - lerpDistance);
+
+            if (lerpDistance < 0.34f)
+            {
+                music.stopDefault();
+                notTrigger = true;
+            }
+            else if (lerpDistance > 0.66f)
+            {
+                notTrigger = false;
+                music.stopForest();
+                music.stopMountains();
+            }
+            else if (notTrigger && lerpDistance > 0.34f && lerpDistance < 0.36f)
+            {
+                music.setDefault();
+                notTrigger = false;
+            }
+
+            else if (!notTrigger && lerpDistance > 0.64f && lerpDistance < 0.66f)
             {
                 if (isMountain)
                 {
@@ -63,20 +84,8 @@ public class MountainAudioStart : MonoBehaviour
                 {
                     music.setForest();
                 }
-                audioTrigger = true;
+                notTrigger = true;
             }
-            isInBiome = true;
-            music.updateMusicVolume(1 - lerpDistance);
-        }
-        else if (lerpDistance > 0.5f && !isInBiome)
-        {
-            if (audioTrigger)
-            {
-                music.setDefault();
-                audioTrigger = false;
-                Debug.Log("Left Mount");
-            }
-            music.updateMusicVolume(lerpDistance);
         }
     }
 }

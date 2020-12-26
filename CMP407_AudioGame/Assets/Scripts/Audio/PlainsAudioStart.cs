@@ -13,6 +13,7 @@ public class PlainsAudioStart : MonoBehaviour
 
     bool inVillage = false;
     bool musicTrigger = false;
+    bool notTrigger = true;
 
     private void Start()
     {
@@ -24,30 +25,33 @@ public class PlainsAudioStart : MonoBehaviour
         lerpDistance = Vector3.Distance(go.transform.position, other.transform.position);
         lerpDistance = (lerpDistance - 155f) / 35f;
 
-        if (lerpDistance > 0.5f)
-        {
-            inVillage = false;
-        }
 
-        if (lerpDistance < 0.5f && lerpDistance > 0f)
+        if (lerpDistance > 0 && lerpDistance < 1)
         {
-            if (!musicTrigger)
+            music.updateNonBiomeMusicVolume(lerpDistance);
+            music.updateBiomeMusicVolume(1 - lerpDistance);
+
+            if (lerpDistance < 0.34f)
             {
-                music.setPlains();
-                musicTrigger = true;
+                music.stopDefault();
+                notTrigger = true;
             }
-            inVillage = true;
-            music.updateMusicVolume(1 - lerpDistance);
-        }
-        else if (lerpDistance > 0.5f && !inVillage)
-        {
-            if (musicTrigger)
+            else if (lerpDistance > 0.66f)
+            {
+                notTrigger = false;
+                music.stopPlains();
+            }
+            else if (notTrigger && lerpDistance > 0.34f && lerpDistance < 0.36f)
             {
                 music.setDefault();
-                musicTrigger = false;
+                notTrigger = false;
             }
 
-            music.updateMusicVolume(lerpDistance);
+            else if (!notTrigger && lerpDistance > 0.64f && lerpDistance < 0.66f)
+            {
+                music.setPlains();
+                notTrigger = true;
+            }
         }
     }
 }
