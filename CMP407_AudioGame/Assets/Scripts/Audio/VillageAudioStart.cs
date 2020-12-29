@@ -58,11 +58,13 @@ public class VillageAudioStart : MonoBehaviour
             {
                 music.stopDefault();
                 notTrigger = true;
+                music.setBiome("Vill");
             }
             else if (lerpDistance > 0.66f)
             {
                 notTrigger = false;
                 music.stopVillage();
+                music.setBiome("Def");
             }
             else if (notTrigger && lerpDistance > 0.34f && lerpDistance < 0.36f)
             {

@@ -171,11 +171,6 @@ public class Movement : MonoBehaviour
             audioController.Stop(lastWalkAudio);
         }
 
-        if(isNearDungeon)
-        {
-            Debug.Log("Near Dungeon");
-        }
-
         if (Input.GetKey(KeyCode.Escape))
         {
             #if UNITY_EDITOR

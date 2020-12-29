@@ -6,8 +6,6 @@ public class AlterAreaAudio : MonoBehaviour
 {
     float lerpDistance;
 
-    bool nearDungeon = false;
-    bool musicTrigger = false;
     bool notTrigger = true;
 
     MusicController music;
@@ -39,12 +37,21 @@ public class AlterAreaAudio : MonoBehaviour
             {
                 music.stopForest();
                 music.stopMountains();
+                music.setBiome("Dun");
                 notTrigger = true;
             }
             else if (lerpDistance > 0.66f)
             {
                 notTrigger = false;
                 music.stopDungeon();
+                if (isMountains)
+                {
+                    music.setBiome("Mount");
+                }
+                else
+                {
+                    music.setBiome("For");
+                }
             }
             else if (notTrigger && lerpDistance > 0.34f && lerpDistance < 0.36f)
             {

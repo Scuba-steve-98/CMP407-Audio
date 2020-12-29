@@ -89,7 +89,49 @@ public class MusicController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Debug.Log("Biome: " + currentBiome);
+        }
 
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Debug.Log("Default: " + defaultMusicSource.isPlaying);
+            Debug.Log("Village: " + villageSource.isPlaying);
+            Debug.Log("Mountains: " + mountiansSource.isPlaying);
+            Debug.Log("Plains: " + plainsSource.isPlaying);
+            Debug.Log("Forest: " + forestSource.isPlaying);
+            Debug.Log("Dungeon: " + dungeonSource.isPlaying);
+            Debug.Log("Night: " + nightimeSource.isPlaying);
+        }
+    }
+
+    public void setBiome(string biome)
+    {
+        if (biome == "Mount")
+        {
+            currentBiome = BIOME.MOUNTAINS;
+        }
+        if (biome == "Vill")
+        {
+            currentBiome = BIOME.VILLAGE;
+        }
+        if (biome == "Def")
+        {
+            currentBiome = BIOME.DEFAULT;
+        }
+        if (biome == "Plain")
+        {
+            currentBiome = BIOME.PLAINS;
+        }
+        if (biome == "For")
+        {
+            currentBiome = BIOME.FOREST;
+        }
+        if (biome == "Dun")
+        {
+            currentBiome = BIOME.DUNGEON;
+        }
     }
 
     public void updateAllDayMusicVolume(float lerpValue)
@@ -135,7 +177,7 @@ public class MusicController : MonoBehaviour
 
     public void setDefault()
     {
-        currentBiome = BIOME.DEFAULT;
+        //currentBiome = BIOME.DEFAULT;
         if (!isDay)
             return;
 
@@ -144,7 +186,7 @@ public class MusicController : MonoBehaviour
 
     public void setMountains()
     {
-        currentBiome = BIOME.MOUNTAINS;
+        //currentBiome = BIOME.MOUNTAINS;
         if (!isDay)
             return;
 
@@ -153,7 +195,7 @@ public class MusicController : MonoBehaviour
 
     public void setVillage()
     {
-        currentBiome = BIOME.VILLAGE;
+        //currentBiome = BIOME.VILLAGE;
         if (!isDay)
             return;
 
@@ -162,7 +204,7 @@ public class MusicController : MonoBehaviour
 
     public void setDungeon()
     {
-        currentBiome = BIOME.DUNGEON;
+        //currentBiome = BIOME.DUNGEON;
         if (!isDay)
             return;
 
@@ -171,7 +213,7 @@ public class MusicController : MonoBehaviour
 
     public void setPlains()
     {
-        currentBiome = BIOME.PLAINS;
+        //currentBiome = BIOME.PLAINS;
         if (!isDay)
             return;
 
@@ -180,7 +222,7 @@ public class MusicController : MonoBehaviour
 
     public void setForest()
     {
-        currentBiome = BIOME.FOREST;
+        //currentBiome = BIOME.FOREST;
         if (!isDay)
             return;
 

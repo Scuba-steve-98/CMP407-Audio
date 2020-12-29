@@ -2734,6 +2734,7 @@ GameObject:
   - component: {fileID: 1219834101}
   - component: {fileID: 1219834104}
   - component: {fileID: 1219834105}
+  - component: {fileID: 1219834099}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -2741,6 +2742,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1219834099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219834098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 396123581d89c4d409c549713d18672a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &1219834101
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2798,7 +2811,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219834098}
   m_LocalRotation: {x: 0, y: 0.46484205, z: 0, w: 0.8853937}
-  m_LocalPosition: {x: 276.84, y: 60.7, z: 448.08}
+  m_LocalPosition: {x: 277.08, y: 60.7, z: 448.08}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 963194228}
@@ -2812,7 +2825,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219834098}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3826191fe21c8441a3066728e6a27b1, type: 3}
   m_Name: 
@@ -4317,13 +4330,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 8147134787917930145, guid: 6bf4e554a68931848bf974888d90a83f, type: 2}
-  defaultMusic: {fileID: 8300000, guid: 9c4b83f18b3565e4780896083427e0c6, type: 3}
-  village: {fileID: 8300000, guid: 11348ad5771b4624f80bfc844e765973, type: 3}
-  mountians: {fileID: 8300000, guid: 36e2d8dcdbda98e4dbf9881c60510bc5, type: 3}
-  plains: {fileID: 8300000, guid: ef94986f4b296454ea03f886f685c4fb, type: 3}
-  forest: {fileID: 8300000, guid: 2bde3beb4fd61414f8d1a34f7ff552a3, type: 3}
-  nightime: {fileID: 8300000, guid: 45e47e177f286af4e8e60deb37793181, type: 3}
-  dungeon: {fileID: 8300000, guid: d4af0301de9df494bb0f54107e566690, type: 3}
+  defaultMusic: {fileID: 8300000, guid: e90fbf4a32747d44ea409111879d88d6, type: 3}
+  village: {fileID: 8300000, guid: dc55732e98ef77043bc6958f47bbdb63, type: 3}
+  mountians: {fileID: 8300000, guid: e8e36636e4ca62a40b52bda89e96bf3d, type: 3}
+  plains: {fileID: 8300000, guid: fc1de57df1287894fb510b71b66d7cb1, type: 3}
+  forest: {fileID: 8300000, guid: 39db236a49ff7dc489d4f45e84357b4a, type: 3}
+  nightime: {fileID: 8300000, guid: 5334613c99d7f964695edad637eea998, type: 3}
+  dungeon: {fileID: 8300000, guid: 32908cd25abb99d4eb103dd2c1a27b4f, type: 3}
 --- !u!114 &2039875973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4339,167 +4352,167 @@ MonoBehaviour:
   _audioMixer: {fileID: -6795414408083488731, guid: 6bf4e554a68931848bf974888d90a83f, type: 2}
   audioClip:
   - name: Walk1
-    clip: {fileID: 8300000, guid: e7bd24a9025048f4387d708d7c740641, type: 3}
+    clip: {fileID: 8300000, guid: af135c0bc53f4a2428cec011a0bb3559, type: 3}
     volume: 0.521
     loop: 0
     source: {fileID: 0}
   - name: Walk2
-    clip: {fileID: 8300000, guid: 7bfb45d406655cc49889fbad905b385d, type: 3}
+    clip: {fileID: 8300000, guid: 82fac5d537ad1ac4795a8b1b5f2b8ca3, type: 3}
     volume: 0.516
     loop: 0
     source: {fileID: 0}
   - name: Walk3
-    clip: {fileID: 8300000, guid: 677050ccdc27f594c82a02745bcc36f0, type: 3}
+    clip: {fileID: 8300000, guid: 2df606bb2b7a24d42aeb9a0d4dd649d0, type: 3}
     volume: 0.556
     loop: 0
     source: {fileID: 0}
   - name: Walk4
-    clip: {fileID: 8300000, guid: e8efbb54d1dd7614d8c2c175db7d9e3f, type: 3}
+    clip: {fileID: 8300000, guid: 1c2035bf224cdd949990b018c0e9de5a, type: 3}
     volume: 0.547
     loop: 0
     source: {fileID: 0}
   - name: Walk5
-    clip: {fileID: 8300000, guid: eb5a67e14dcfad9439a1a6545912b669, type: 3}
+    clip: {fileID: 8300000, guid: 74526b0e82c699741a3f0faa896799f5, type: 3}
     volume: 0.6
     loop: 0
     source: {fileID: 0}
   - name: Walk6
-    clip: {fileID: 8300000, guid: 10a77d88743c8f04bbc21e7093ea386c, type: 3}
+    clip: {fileID: 8300000, guid: 3e71cb06e670df444b06ddec4f55bbf3, type: 3}
     volume: 0.578
     loop: 0
     source: {fileID: 0}
   - name: Walk7
-    clip: {fileID: 8300000, guid: 1ac4b77007595bc4e8433be6844ba8e2, type: 3}
+    clip: {fileID: 8300000, guid: 09293effa76e2ec49af479621c511155, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: Run1
-    clip: {fileID: 8300000, guid: 5e82ea874a9238d4f8ef90a2d5b5d614, type: 3}
+    clip: {fileID: 8300000, guid: 61d573b21f8c53544b6ddf03da194630, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: Run2
-    clip: {fileID: 8300000, guid: 6716a38e25204fb42b10405fdf3723c7, type: 3}
+    clip: {fileID: 8300000, guid: 1043120b321444c43b4ff3212b8efc5b, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: Run3
-    clip: {fileID: 8300000, guid: dd24cb8b15fffaa4ab706915bc456596, type: 3}
+    clip: {fileID: 8300000, guid: 4bbfa412f1f6a724dad18c91cfa4c423, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: Run4
-    clip: {fileID: 8300000, guid: 18b4c1c3e2ef8d3498e39b29cbc29097, type: 3}
+    clip: {fileID: 8300000, guid: 9c40338c05248a5479c7a36d66b161b2, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: Run5
-    clip: {fileID: 8300000, guid: f39041c52ad2bd34d96576ad728042a2, type: 3}
+    clip: {fileID: 8300000, guid: f811971ac5618d34198b83cfe229f3d9, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: Run6
-    clip: {fileID: 8300000, guid: 024afdba90a8e1946af8f02203c2dfb7, type: 3}
+    clip: {fileID: 8300000, guid: cc268b7e6674fe24c99659632223d1fb, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: WaterWalk1
-    clip: {fileID: 8300000, guid: f13c17ba610233c40baaa4dbabf990db, type: 3}
+    clip: {fileID: 8300000, guid: dd11fbc629d2eb54298f2c682ea5a470, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: WaterWalk2
-    clip: {fileID: 8300000, guid: 4ac5eba086945124d9ec24baacb73c52, type: 3}
+    clip: {fileID: 8300000, guid: c5f72d87883e8ee41ba921144b4e918d, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: WaterWalk3
-    clip: {fileID: 8300000, guid: 512b1baa98bfa524481541c5f4e39d49, type: 3}
+    clip: {fileID: 8300000, guid: 32b13d61126753f4ba162cecfadd418b, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: WaterWalk4
-    clip: {fileID: 8300000, guid: 2cade9a1f0cb7f743831747ade40a1d7, type: 3}
+    clip: {fileID: 8300000, guid: 344eb08188596a5498b57a4280617a5a, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: WaterWalk5
-    clip: {fileID: 8300000, guid: ad7ff499a46c71246b55fa541d314b95, type: 3}
+    clip: {fileID: 8300000, guid: 0042fcb71b71d2d4c92b1f1a484e1d8f, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: DeepWalk1
-    clip: {fileID: 8300000, guid: 729336c70f4cd86468ea7bdef6958a46, type: 3}
+    clip: {fileID: 8300000, guid: 9fbb90fdead582a4ca796a8fd25689eb, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: DeepWalk2
-    clip: {fileID: 8300000, guid: 0682a3175ef17c9418d97423ca35f6a3, type: 3}
+    clip: {fileID: 8300000, guid: 5738a3c722552d548a58fc210139d854, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: DeepWalk3
-    clip: {fileID: 8300000, guid: 8e5d2d06a73b87e4c8d0c6c83e5c56e9, type: 3}
+    clip: {fileID: 8300000, guid: 3aa7a5af1d31a974c93afdb22ec11f88, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: DeepWalk4
-    clip: {fileID: 8300000, guid: 3579f0037a861e447b965098a14d1782, type: 3}
+    clip: {fileID: 8300000, guid: 546a3aee1c886934c9513d7480e1fd03, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: WaterExit1
-    clip: {fileID: 8300000, guid: ac3e98596baa8ab4b9203a76dffa1942, type: 3}
+    clip: {fileID: 8300000, guid: 17bcb224424e2bb409ff8a1101719741, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: WaterExit2
-    clip: {fileID: 8300000, guid: 91efaaea5c4afcd409ed213faee5f905, type: 3}
+    clip: {fileID: 8300000, guid: 9364cffd3d96b2b4b9d5def7673c46d8, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: WaterExit3
-    clip: {fileID: 8300000, guid: ab2da690a51c9d444a20f8bc23171395, type: 3}
+    clip: {fileID: 8300000, guid: d9092c275ab802147bf894c4b0d20e1f, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: WaterExit4
-    clip: {fileID: 8300000, guid: d2cf82267b74a4d49a3743c884f26562, type: 3}
+    clip: {fileID: 8300000, guid: 56e6bc44569b6a041a32fafb63a6d08d, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: WaterExit5
-    clip: {fileID: 8300000, guid: caeb3047951caed46b3c0dcdab4a5583, type: 3}
+    clip: {fileID: 8300000, guid: 6e414af3dea9e1e46b4c7af5af89eabe, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: Jump1
-    clip: {fileID: 8300000, guid: 20339d375cbcf1843ba4506e61881c8b, type: 3}
+    clip: {fileID: 8300000, guid: c76769a03870f40408fd166ca638fddf, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: Jump2
-    clip: {fileID: 8300000, guid: f9f9c0b177f47764f96f754d4665b5a8, type: 3}
+    clip: {fileID: 8300000, guid: a9396eee445b5fe499281011aafbfaa7, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: Jump3
-    clip: {fileID: 8300000, guid: d0a76923e47ec854d926466b5725d006, type: 3}
+    clip: {fileID: 8300000, guid: 9380c768c3575af4b8aa6225c39b0722, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: Dungeon1
-    clip: {fileID: 8300000, guid: 7ca0a997904b3fd4ea8a1e886afa0575, type: 3}
+    clip: {fileID: 8300000, guid: f8f6cf97061729141ad8b4e3faa6e748, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: Dungeon2
-    clip: {fileID: 8300000, guid: b8cb3e437768b344f8aff11dbf20996a, type: 3}
+    clip: {fileID: 8300000, guid: 705896a1b123dff40886887f77ac0558, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
   - name: Dungeon3
-    clip: {fileID: 8300000, guid: 35573290f9b7d2041a318e9129ff6172, type: 3}
+    clip: {fileID: 8300000, guid: a7bb4ee4b29532443932d2d24eb7553c, type: 3}
     volume: 0.565
     loop: 0
     source: {fileID: 0}
@@ -4520,69 +4533,69 @@ MonoBehaviour:
   cricketGroup: {fileID: -6611146336303575657, guid: 6bf4e554a68931848bf974888d90a83f, type: 2}
   books:
   - name: Book1
-    clip: {fileID: 8300000, guid: 8bcb998cf179e62479b5d1ed630f10a1, type: 3}
+    clip: {fileID: 8300000, guid: d3d5fcd3b8cfa31479112219e8a33895, type: 3}
     volume: 0.454
     loop: 0
     source: {fileID: 0}
   - name: Book2
-    clip: {fileID: 8300000, guid: 8ccf55233cd9c514bb58af1169043663, type: 3}
+    clip: {fileID: 8300000, guid: a1d36c5f9c73d3442a9e8ae53a4caaa1, type: 3}
     volume: 0.576
     loop: 0
     source: {fileID: 0}
   - name: Book3
-    clip: {fileID: 8300000, guid: 8a8014e77f4c2414788b67d1e82dba2e, type: 3}
+    clip: {fileID: 8300000, guid: 20d53e37d03476245a3e7dd74c21d09b, type: 3}
     volume: 0.715
     loop: 0
     source: {fileID: 0}
   birds:
   - name: Bird1
-    clip: {fileID: 8300000, guid: c40fb74160f819947a312f0cf288bf24, type: 3}
+    clip: {fileID: 8300000, guid: 84e060a6d3a7f9544a4abc8bf4ca72df, type: 3}
     volume: 0.52
     loop: 0
     source: {fileID: 0}
   - name: Bird2
-    clip: {fileID: 8300000, guid: 13427c5aa31dc974f938e7547d651a7e, type: 3}
+    clip: {fileID: 8300000, guid: e25b98ad17e3b2045accca6f2c78a6e9, type: 3}
     volume: 0.48
     loop: 0
     source: {fileID: 0}
   - name: Bird3
-    clip: {fileID: 8300000, guid: 98bfb70665be79c469930738db228654, type: 3}
+    clip: {fileID: 8300000, guid: c68288cb1f7e2d74bbe9959254de83f9, type: 3}
     volume: 0.525
     loop: 0
     source: {fileID: 0}
   - name: Bird4
-    clip: {fileID: 8300000, guid: 3738eaaad30a11d48a06b95bed89b475, type: 3}
+    clip: {fileID: 8300000, guid: 60a697f54df193449a05838e2e799916, type: 3}
     volume: 0.445
     loop: 0
     source: {fileID: 0}
   - name: Bird5
-    clip: {fileID: 8300000, guid: 062191a328689f944b3333bec247d876, type: 3}
+    clip: {fileID: 8300000, guid: e37f80f100228944491e956f2cf6ff5f, type: 3}
     volume: 0.556
     loop: 0
     source: {fileID: 0}
   - name: Bird6
-    clip: {fileID: 8300000, guid: 821de1ff2f2b96a4a829928af7d297b7, type: 3}
+    clip: {fileID: 8300000, guid: 3da7a3ecc3846ce4cb2caa6ee141e1b2, type: 3}
     volume: 0.543
     loop: 0
     source: {fileID: 0}
   crickets:
   - name: Cricket1
-    clip: {fileID: 8300000, guid: 62f6bdb651440d647b5017654d460462, type: 3}
+    clip: {fileID: 8300000, guid: baeb8181684cd064ba361bc6a0b2366d, type: 3}
     volume: 0.418
     loop: 0
     source: {fileID: 0}
   - name: Cricket2
-    clip: {fileID: 8300000, guid: 1cd10ad143312524b916b5248631f25f, type: 3}
+    clip: {fileID: 8300000, guid: b2936cee1fe898948a8c0db9ed3f23cb, type: 3}
     volume: 0.418
     loop: 0
     source: {fileID: 0}
   - name: Cricket3
-    clip: {fileID: 8300000, guid: 91c9a52e3a063a54b80c9af36d790691, type: 3}
+    clip: {fileID: 8300000, guid: 5a3882f9abbedd941834c5e81f1146a4, type: 3}
     volume: 0.418
     loop: 0
     source: {fileID: 0}
   - name: Cricket4
-    clip: {fileID: 8300000, guid: 23204c0dabe734d46af4044f711ff377, type: 3}
+    clip: {fileID: 8300000, guid: 804310d37738b794396a285570cbd179, type: 3}
     volume: 0.418
     loop: 0
     source: {fileID: 0}

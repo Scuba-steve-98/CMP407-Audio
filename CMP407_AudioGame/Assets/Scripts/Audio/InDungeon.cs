@@ -6,11 +6,11 @@ public class InDungeon : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<Movement>().setInDungeon(true);
+        other.gameObject.GetComponent<PlayerController>().setInDungeon(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        other.gameObject.GetComponent<Movement>().setInDungeon(false);
+        other.gameObject.GetComponent<PlayerController>().setInDungeon(false);
     }
 }
