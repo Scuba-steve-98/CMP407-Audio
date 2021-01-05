@@ -96,13 +96,27 @@ public class MusicController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            Debug.Log("Default: " + defaultMusicSource.isPlaying);
-            Debug.Log("Village: " + villageSource.isPlaying);
-            Debug.Log("Mountains: " + mountiansSource.isPlaying);
-            Debug.Log("Plains: " + plainsSource.isPlaying);
-            Debug.Log("Forest: " + forestSource.isPlaying);
-            Debug.Log("Dungeon: " + dungeonSource.isPlaying);
-            Debug.Log("Night: " + nightimeSource.isPlaying);
+            Debug.Log("--------------------------------------");
+            if (defaultMusicSource.isPlaying)
+                Debug.Log("Default: " + defaultMusicSource.isPlaying);
+
+            if (villageSource.isPlaying)
+                Debug.Log("Village: " + villageSource.isPlaying);
+
+            if (mountiansSource.isPlaying)
+                Debug.Log("Mountains: " + mountiansSource.isPlaying);
+
+            if (plainsSource.isPlaying)
+                Debug.Log("Plains: " + plainsSource.isPlaying);
+
+            if (forestSource.isPlaying)
+                Debug.Log("Forest: " + forestSource.isPlaying);
+
+            if (dungeonSource.isPlaying)
+                Debug.Log("Dungeon: " + dungeonSource.isPlaying);
+
+            if (nightimeSource.isPlaying)
+                Debug.Log("Night: " + nightimeSource.isPlaying);
         }
     }
 
@@ -180,8 +194,8 @@ public class MusicController : MonoBehaviour
         //currentBiome = BIOME.DEFAULT;
         if (!isDay)
             return;
-
-        defaultMusicSource.Play();
+        if(!defaultMusicSource.isPlaying)
+            defaultMusicSource.Play();
     }
 
     public void setMountains()
@@ -189,8 +203,8 @@ public class MusicController : MonoBehaviour
         //currentBiome = BIOME.MOUNTAINS;
         if (!isDay)
             return;
-
-        mountiansSource.Play();
+        if(!mountiansSource.isPlaying)
+            mountiansSource.Play();
     }
 
     public void setVillage()
@@ -198,8 +212,8 @@ public class MusicController : MonoBehaviour
         //currentBiome = BIOME.VILLAGE;
         if (!isDay)
             return;
-
-        villageSource.Play();
+        if (!villageSource.isPlaying) 
+            villageSource.Play();
     }
 
     public void setDungeon()
@@ -208,7 +222,8 @@ public class MusicController : MonoBehaviour
         if (!isDay)
             return;
 
-        dungeonSource.Play();
+        if(!dungeonSource.isPlaying)
+            dungeonSource.Play();
     }
 
     public void setPlains()
@@ -216,8 +231,8 @@ public class MusicController : MonoBehaviour
         //currentBiome = BIOME.PLAINS;
         if (!isDay)
             return;
-
-        plainsSource.Play();
+        if(!plainsSource.isPlaying)
+            plainsSource.Play();
     }
 
     public void setForest()
@@ -225,8 +240,8 @@ public class MusicController : MonoBehaviour
         //currentBiome = BIOME.FOREST;
         if (!isDay)
             return;
-
-        forestSource.Play();
+        if(!forestSource.isPlaying)
+            forestSource.Play();
     }
 
     public void setNight()
@@ -286,9 +301,9 @@ public class MusicController : MonoBehaviour
 
     public void stopForest()
     {
-        if (plainsSource.isPlaying)
+        if (forestSource.isPlaying)
         {
-            plainsSource.Stop();
+            forestSource.Stop();
         }
     }
 
@@ -326,31 +341,23 @@ public class MusicController : MonoBehaviour
 
     public void stopCurrent()
     {
-        switch (currentBiome)
-        {
-            case BIOME.VILLAGE:
-                stopVillage();
-                break;
 
-            case BIOME.MOUNTAINS:
-                stopMountains();
-                break;
+        if (defaultMusicSource.isPlaying)
+            defaultMusicSource.Stop();
 
-            case BIOME.PLAINS:
-                stopPlains();
-                break;
+        if (villageSource.isPlaying)
+            villageSource.Stop();
 
-            case BIOME.FOREST:
-                stopForest();
-                break;
+        if (mountiansSource.isPlaying)
+            mountiansSource.Stop();
 
-            case BIOME.DUNGEON:
-                stopDungeon();
-                break;
+        if (plainsSource.isPlaying)
+            plainsSource.Stop();
 
-            case BIOME.DEFAULT:
-                stopDefault();
-                break;
-        }
+        if (forestSource.isPlaying)
+            forestSource.Stop();
+
+        if (dungeonSource.isPlaying)
+            dungeonSource.Stop();
     }
 }

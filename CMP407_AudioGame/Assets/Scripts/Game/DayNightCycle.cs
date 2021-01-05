@@ -54,15 +54,18 @@ public class DayNightCycle : MonoBehaviour
                 {
                     music.setToDay(true);
                     notTriggered = false;
+                    //Debug.Log("Day Start");
                 }
 
                 if (timeOfDay > 8.895f && timeOfDay < 8.905f && !notTriggered)
                 {
                     music.stopNight();
+                    //Debug.Log("Night End");
                     notTriggered = true;
                 }
 
                 float lerpVal = (9.1f - timeOfDay) / 0.6f;
+                //Debug.Log(lerpVal + " " + (1 - lerpVal));
                 music.updateNightVolume(lerpVal);
                 music.updateAllDayMusicVolume(1 - lerpVal);
             }
@@ -83,7 +86,8 @@ public class DayNightCycle : MonoBehaviour
                     notTriggered = true;
                 }
 
-                float lerpVal = (9.1f - timeOfDay) / 0.6f;
+                float lerpVal = (20.3f - timeOfDay) / 0.6f;
+                //Debug.Log(lerpVal + " " + (1 - lerpVal));
                 music.updateNightVolume(1 - lerpVal);
                 music.updateAllDayMusicVolume(lerpVal);
             }

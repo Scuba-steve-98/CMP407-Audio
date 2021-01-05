@@ -36,12 +36,14 @@ public class PlainsAudioStart : MonoBehaviour
                 music.stopDefault();
                 notTrigger = true;
                 music.setBiome("Plain");
+                music.setPlains();
             }
             else if (lerpDistance > 0.66f)
             {
                 notTrigger = false;
                 music.stopPlains();
                 music.setBiome("Def");
+                music.setDefault();
             }
             else if (notTrigger && lerpDistance > 0.34f && lerpDistance < 0.36f)
             {

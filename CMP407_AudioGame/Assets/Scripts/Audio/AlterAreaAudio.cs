@@ -21,12 +21,13 @@ public class AlterAreaAudio : MonoBehaviour
         colliderPos.x += 10;
     }
 
-
     private void OnTriggerStay(Collider other)
     {
         lerpDistance = Vector3.Distance(other.gameObject.transform.position, colliderPos);
-        lerpDistance = (lerpDistance - 25f) / 25f;
-
+        if (isMountains)
+            lerpDistance = (lerpDistance - 25f) / 25f;
+        else if (!isMountains)
+            lerpDistance = (lerpDistance - 15) / 15f;
 
         if (lerpDistance > 0 && lerpDistance < 1)
         {
@@ -35,8 +36,17 @@ public class AlterAreaAudio : MonoBehaviour
 
             if (lerpDistance < 0.34f)
             {
-                music.stopForest();
-                music.stopMountains();
+                if(isMountains)
+                {
+                    music.stopMountains();
+                }
+                else if (!isMountains)
+                {
+                    music.stopForest();
+                }
+                
+                
+                music.setDungeon();
                 music.setBiome("Dun");
                 notTrigger = true;
             }
@@ -47,10 +57,12 @@ public class AlterAreaAudio : MonoBehaviour
                 if (isMountains)
                 {
                     music.setBiome("Mount");
+                    music.setMountains();
                 }
                 else
                 {
                     music.setBiome("For");
+                    music.setForest();
                 }
             }
             else if (notTrigger && lerpDistance > 0.34f && lerpDistance < 0.36f)

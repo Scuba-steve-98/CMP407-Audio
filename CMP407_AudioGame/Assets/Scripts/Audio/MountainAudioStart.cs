@@ -64,10 +64,12 @@ public class MountainAudioStart : MonoBehaviour
                 if (isMountain)
                 {
                     music.setBiome("Mount");
+                    music.setMountains();
                 }
                 else
                 {
                     music.setBiome("For");
+                    music.setForest();
                 }
             }
             else if (lerpDistance > 0.66f)
@@ -75,6 +77,7 @@ public class MountainAudioStart : MonoBehaviour
                 notTrigger = false;
                 music.stopForest();
                 music.stopMountains();
+                music.setDefault();
                 music.setBiome("Def");
             }
             else if (notTrigger && lerpDistance > 0.34f && lerpDistance < 0.36f)

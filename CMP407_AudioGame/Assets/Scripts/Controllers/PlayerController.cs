@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         jumpHeight = 2.1f;
         gravity = -9.81f;
         stepLength = 0;
-        runStepLengthMultiplier = 0.2f;
+        runStepLengthMultiplier = 0.55f;
 
         moveState = MOVE_STATE.STATIONARY;
     }
@@ -164,17 +164,18 @@ public class PlayerController : MonoBehaviour
         }
 
         //Debug.Log("MoveState: " + moveState + " StepLength: " + stepLength + " isOnWater: " + isOnWater);
-        if (stepLength > 0.9f)
+        if (stepLength > 2.3f)
         {
-            if (moveState == MOVE_STATE.WALKING && !isOnWater)
+            if (moveState == MOVE_STATE.WALKING && !isOnWater && !isInDungeon)
             {
                 int q = Random.Range(1, 7);
                 lastWalkAudio = "Walk" + q;
                 audioController.PlayOneShot(lastWalkAudio, Random.Range(0.5f, 0.6f));
+                //Debug.Log("Walk");
             }
             else if (moveState == MOVE_STATE.RUNNING && !isOnWater)
             {
-                Debug.Log("Run");
+                //Debug.Log("Run");
                 int q = Random.Range(1, 6);
                 lastWalkAudio = "Run" + q;
                 audioController.PlayOneShot(lastWalkAudio, Random.Range(0.5f, 0.65f));
@@ -245,5 +246,6 @@ public class PlayerController : MonoBehaviour
     public void setInDungeon(bool dungeon)
     {
         isInDungeon = dungeon;
+        //Debug.Log("In Dungeon");
     }
 }

@@ -32,7 +32,7 @@ public class VillageAudioStart : MonoBehaviour
                 book.SetActive(true);
             }
         }
-        
+        //Debug.Log("Entered");
     }
 
     private void OnTriggerExit(Collider other)
@@ -59,12 +59,14 @@ public class VillageAudioStart : MonoBehaviour
                 music.stopDefault();
                 notTrigger = true;
                 music.setBiome("Vill");
+                music.setVillage();
             }
             else if (lerpDistance > 0.66f)
             {
                 notTrigger = false;
                 music.stopVillage();
                 music.setBiome("Def");
+                music.setDefault();
             }
             else if (notTrigger && lerpDistance > 0.34f && lerpDistance < 0.36f)
             {
